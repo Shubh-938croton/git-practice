@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
 this line is from master branch 
+======  
+>>>>>>> conflict-branch
 my name is shubh kamal
 this is only for the learning 
 
