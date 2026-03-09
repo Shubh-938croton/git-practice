@@ -1,0 +1,11 @@
+body{
+    text-align: center;
+    margin-top:200px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(42, 182, 112);
+    background-color: rgb(0, 0, 0);
+    background-image: url()
+}
+#clock{
+    font-size: 60px;
+}
