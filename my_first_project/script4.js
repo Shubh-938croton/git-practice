@@ -29,7 +29,13 @@ function updateClock(){
     else{
         document.getElementById("greeting").innerText = "Good Evening";
     }
-
+    let day =now.getDay();
+    let date =now.getDate();
+    let month=now.getMonth();
+    let year=now.getFullYear();
+    let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    document.getElementById("date").innerText=days[day]+", "+date+" "+months[month]+" "+year;
 }
 
 setInterval(updateClock,1000);
