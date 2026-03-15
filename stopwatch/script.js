@@ -1,45 +1,69 @@
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
+
 let timer = null;
+
 function updateDisplay(){
-    let h = String(hours).padStart(2,'0');
-    let m = String(minutes).padStart(2,'0');
-    let s = String(seconds).padStart(2,'0');
-    document.getElementById("display").innerText = `${h}:${m}:${s}`;
-}
-function stopwatch(){
-    seconds++;
+    let h = hours < 10 ? "0" + hours : hours;
+    let m = minutes < 10 ? "0" + minutes : minutes;
+    let s = seconds < 10 ? "0" + seconds : seconds;
 
-    if(seconds == 60){
-        seconds = 0;
-        minutes++;
+    document.getElementById("timer").innerText = h + ":" + m + ":" + s;
+}
+
+function startTimer(){
+
+    if(timer !== null){
+        return;
     }
 
-    if(minutes == 60){
-        minutes = 0;
-        hours++;
-    }
+    timer = setInterval(() => {
 
-    updateDisplay();
-}
-function start(){
-    if(timer !== null) return;
-    timer = setInterval(stopwatch,1000);
+        seconds++;
+
+        if(seconds == 60){
+            seconds = 0;
+            minutes++;
+        }
+
+        if(minutes == 60){
+            minutes = 0;
+            hours++;
+        }
+
+        updateDisplay();
+
+    },1000);
 }
 
-function pause(){
+function stopTimer(){
     clearInterval(timer);
     timer = null;
 }
 
-function reset(){
-    clearInterval(timer);
-    timer = null;
-
+function resetTimer(){
+    stopTimer();
     seconds = 0;
     minutes = 0;
     hours = 0;
-
     updateDisplay();
+
+    document.getElementById("laps").innerHTML = "";
 }
+
+function addLap(){
+
+    let lapTime = document.getElementById("timer").innerText;
+
+    let li = document.createElement("li");
+
+    li.innerText = "Lap: " + lapTime;
+
+    document.getElementById("laps").appendChild(li);
+}
+
+document.getElementById("start").onclick = startTimer;
+document.getElementById("stop").onclick = stopTimer;
+document.getElementById("reset").onclick = resetTimer;
+document.getElementById("lap").onclick = addLap;
